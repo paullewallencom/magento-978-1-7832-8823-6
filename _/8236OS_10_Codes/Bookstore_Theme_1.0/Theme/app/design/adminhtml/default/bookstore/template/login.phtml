@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title><?php echo Mage::helper('adminhtml')->__('Log into Magento Admin Page') ?></title>
+<link type="text/css" rel="stylesheet" href="<?php echo $this->getSkinUrl('../../default/bookstore/custom.css') ?>" media="all" />
+<!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body id="login_page">
+    <div id="loginContainer">
+    
+        <div  class="login_logo">
+        
+        	<img src="<?php echo $this->getSkinUrl('../../default/bookstore/images/logo-login.gif') ?>" alt="<?php echo Mage::helper('adminhtml')->__('Log into Magento Admin Page') ?>">
+        
+        	<div id="messages"> <?php echo $this->getMessagesBlock()->getGroupedHtml() ?> </div>
+        
+        </div>
+      <!-- /.login_logo -->
+          
+      
+    <div class="login_form">
+      
+      	<form method="post" action="" id="loginForm">
+      
+        <div class="form-title">
+          <h1><?php echo Mage::helper('adminhtml')->__('Welcome to the login panel') ?></h1>
+          <h2><?php echo Mage::helper('adminhtml')->__('Log into Magento Admin Page') ?></h2>
+        </div>
+        <!-- /.form-title -->
+        
+        
+        <div class="input-container">
+          <input type="text" class="form-control" id="login-username" name="login[username]" placeholder="<?php echo Mage::helper('adminhtml')->__('User Name:') ?>" required>
+          <input type="password" class="form-control" id="login-passowrd" name="login[password]" placeholder="<?php echo Mage::helper('adminhtml')->__('Password:') ?>" required>
+        </div>
+        <!-- /.input-container -->
+        
+        <button type="submit" id="login-btn" class="btn-login"><?php echo Mage::helper('adminhtml')->__('Login') ?> &raquo;</button>
+        
+      
+    
+      </form>
+        
+    </div>
+    <!-- /.login_form -->
+    
+      <a href="<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/index/forgotpassword', array('_nosecret' => true)) ?>"><?php echo Mage::helper('adminhtml')->__('Forgot your password?') ?></a> 
+      
+    
+    
+    
+</div>
+<!-- /#loginContainer -->
+<a href="<?php echo $this->getBaseUrl() ?>" class="link-frontend"> &laquo; Back to Frontend </a>
+<script type="text/javascript">
+	var loginForm = new varienForm('loginForm');
+</script>
+</body>
+</html>

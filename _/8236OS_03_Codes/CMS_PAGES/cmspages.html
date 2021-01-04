@@ -1,0 +1,35 @@
+<!--
+--
+--
+--  CMS PAGES 
+--  To create a new cms block go to Admin
+--  CMS -> Pages, then select "Add New Page"
+--
+--
+--
+>
+
+<!-- CMS PAGE ID: home -->
+
+<!-- HTML CODE -->
+<div class="col-md-12">
+<h2>Best e-books of the month <small>and much more...</small>
+</h2>
+<p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p></div>
+{{block type="catalog/product_list" category_id="35" template="catalog/product/list-home.phtml" column_count="3" products_count="3"}}
+<div class="well">
+<h3>Lorem ipsum dolor sit amet!</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. <a href="#">Learn More &raquo;</a>
+</p>
+</div>
+
+<!-- Layout XML Updates -->
+<reference name="slider">
+   <block type="cms/block" name="home-fullwidth" as="home-fullwidth">
+      <action method="setBlockId">
+         <block_id>home-fullwidth</block_id>
+      </action>
+   </block>
+</reference>
+
+

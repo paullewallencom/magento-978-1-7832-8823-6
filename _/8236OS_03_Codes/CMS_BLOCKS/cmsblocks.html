@@ -1,0 +1,49 @@
+<!--
+--
+--
+--  CMS BLOCKS 
+--  To create a new cms block go to Admin
+--  CMS -> Static Blocks, then select "Add New Block"
+--  Add the Block Title that you prefer
+--  Add the same CMS BLOCK ID you find in this document
+--
+--
+--
+>
+
+<!-- CMS BLOCK ID: home-fullwidth -->
+
+<div class="row">
+  <div class="col-md-8"> {{block type="cms/block" block_id="home-carousel" template="cms/content.phtml"}} </div>
+  <div class="col-md-4"> {{block type="cms/block" block_id="home-right-banner" template="cms/content.phtml"}} </div>
+</div>
+
+<!-- CMS BLOCK ID: home-carousel -->
+<div data-ride="carousel" class="carousel slide" id="slider-home">
+  <ol class="carousel-indicators">
+    <li data-slide-to="0" data-target="#slider-home"></li>
+    <li data-slide-to="1" data-target="#slider-home" class="active"></li>
+    <li data-slide-to="2" data-target="#slider-home" class=""></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item"> <img src="{{skin_url='images/slide1.png'}}" alt="Slide 1 Alt Text"> </div>
+    <div class="item active"> <img src="{{skin_url='images/slide1.png'}}" alt="Slide 2 Alt Text"> </div>
+    <div class="item"> <img src="{{skin_url='images/slide1.png'}}" alt="Slide 3 Alt Text"> </div>
+  </div>
+  <a data-slide="prev" href="#slider-home" class="left carousel-control"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a data-slide="next" href="#slider-home" class="right carousel-control"> <span class="glyphicon glyphicon-chevron-right"></span> </a> </div>
+
+<!-- CMS BLOCK ID: home-right-banner -->
+<div id="banner-home">
+  <div class="bg-orange">
+    <h3>Lorem ipsum dolor sit amet</h3>
+    <p>Browse now more than 500 ebooks</p>
+  </div>
+  <div class="bg-cyan">
+    <h3>Lorem ipsum dolor sit amet</h3>
+    <p>Browse now more than 500 ebooks</p>
+  </div>
+  <div class="bg-darkgrey">
+    <h3>Lorem ipsum dolor sit amet</h3>
+    <p>Browse now more than 500 ebooks</p>
+  </div>
+</div>

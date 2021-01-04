@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <BookStore_ThemeOptions>
+        	
+        	<!-- Whether our module is active: true or false -->
+            <active>true</active>
+            
+            <!-- Which code pool to use: core, community or local -->
+            <codePool>local</codePool>
+        </BookStore_ThemeOptions>
+    </modules>
+</config> 

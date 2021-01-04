@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * local.xml
+ * Local layout modifications for our local theme
+ * @category    design
+ * @package     bookstore
+ * @copyright   Copyright (c) 2013 Andrea Sacca'.
+ */
+-->
+<layout version="0.1.0">
+	<default translate="label" module="page">
+	
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+			<block type="core/text_list" name="slider" as="slider" translate="label">
+	                <label>Slider Block</label>
+	        </block>
+		</reference>
+		
+		<reference name="head">
+		
+			<!-- Adding Javascripts -->
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.min.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/bootstrap.min.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.scripts.js</name>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+					<name>js/html5shiv.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+			
+			<action method="addItem">
+				<type>skin_js</type>
+					<name>js/respond.min.js</name>
+				<params/><if>lt IE 9</if>
+			</action>
+	
+						
+			<!-- Removing the style.css -->
+			<action method="removeItem">
+				<type>skin_css</type><name>css/styles.css</name>
+			</action>
+			
+			<!-- Adding Bootstrap Css -->
+			<action method="addCss">
+				<stylesheet>css/bootstrap.min.css</stylesheet>
+			</action>
+			
+			
+						
+			<!-- Adding the style.css -->
+			<action method="addCss">
+				<stylesheet>css/styles.css</stylesheet>
+			</action>
+			
+		</reference>
+		<!-- end HEAD -->
+		
+		<reference name="header">
+			<block type="cms/block" name="topbar_cmslinks" as="topbar_cmslinks">
+			    <action method="setBlockId"><block_id>topbar_cmslinks</block_id></action>
+			</block> 
+			
+			<block type="checkout/cart_sidebar" name="top_cart" as="top_cart" template="checkout/cart/topcart.phtml" before="-">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Sidebar Extra Actions</label>
+                </block>
+            </block>
+  		</reference>
+  		
+  		<reference name="left">
+			<remove name="left.newsletter"/> 
+			<remove name="left.permanent.callout"/>
+			<remove name="tags_popular"/>
+			
+			<block type="core/template" name="facebooklikebox" template="social/facebooklikebox.phtml" />
+			
+			<block type="catalog/navigation" before="-" name="leftNav" as="leftNav" template="catalog/navigation/leftnav.phtml"/>
+			
+			<block type="cms/block" name="left-banner" as="left-banner">
+		    	<action method="setBlockId"><block_id>left-banner</block_id></action>
+			</block>
+		</reference>
+		
+		<reference name="footer">
+			<block type="cms/block" name="footer-company" as="footer-company">
+			    <action method="setBlockId"><block_id>footer-company</block_id></action>
+			</block> 
+			<block type="cms/block" name="footer-cmslinks" as="footer-cmslinks">
+			    <action method="setBlockId"><block_id>footer-cmslinks</block_id></action>
+			</block>
+			<block type="cms/block" name="footer-social" as="footer-social">
+			    <action method="setBlockId"><block_id>footer-social</block_id></action>
+			</block>
+			<block type="cms/block" name="footer-cards" as="footer-cards">
+			    <action method="setBlockId"><block_id>footer-cards</block_id></action>
+			</block>
+			
+			<block type="newsletter/subscribe" name="footer.newsletter" as="footer-newsletter" template="newsletter/subscribe.phtml"/>
+		</reference>
+		
+	</default>
+	
+	<catalog_category_default>
+	
+		<reference name="product_list">
+        <action method="setColumnCount">
+            <count>4</count>
+        </action>
+		</reference>
+		
+	</catalog_category_default>
+	
+	<catalog_category_layered>
+	
+		<reference name="product_list">
+        <action method="setColumnCount">
+            <count>4</count>
+        </action>
+		</reference>
+		
+		<reference name="root">
+   <action method="setTemplate">
+      <template>page/2columns-left.phtml</template>
+   </action>
+	</reference>
+
+
+	<reference name="right">
+	<block type="catalog/layer_view" name="catalog.leftnav" after="currency" template="catalog/layer/view.phtml" before="-"/>
+	</reference>
+		
+	</catalog_category_layered>
+	
+	<catalog_product_view>
+	
+		<reference name="root">
+        <action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
+		
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/jquery.prettyPhoto.js</name>
+			</action>
+			<!-- Adding the prettyphoto.css -->
+			<action method="addCss">
+				<stylesheet>css/prettyPhoto.css</stylesheet>
+			</action>
+		</reference>
+		
+		<reference name="content">
+			<block type="core/template" name="socialsharing" template="social/addthis.phtml" before="-" />
+		</reference>
+		
+	</catalog_product_view>
+	
+	
+
+</layout>

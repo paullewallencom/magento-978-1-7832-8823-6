@@ -1,0 +1,44 @@
+<!-- Top Bar -->
+
+
+<div id="topbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8"> <?php echo $this->getChildHtml('topbar_cmslinks') ?> </div>
+      <div class="user-links col-md-4"> <span class="welcome pull-left"> <?php echo $this->getLayout()->getBlock('header')->getWelcome() ?> </span>
+        <ul class="list-inline pull-left">
+          <?php if ($this->helper('customer')->isLoggedIn()): ?>
+          <li> <a title="<?php echo $this->__('My Account') ?>" href="<?php echo $this->getUrl('customer/account') ?>"> <?php echo $this->__('My Account') ?> </a> </li>
+          <li> <a title="Log Out" href="<?php echo $this->getUrl('customer/account/logout') ?>"> <?php echo $this->__('Logout') ?></a> </li>
+          <?php else: ?>
+          <li><a href="<?php echo $this->getUrl('customer/account/login/')?>"> <?php echo $this->__('Login') ?></a></li>
+          <li><a href="<?php echo $this->getUrl('customer/account/create/')?>"> <?php echo $this->__('Create Account') ?></a></li>
+          <?php endif;?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<div id="header">
+  <div class="container">
+    <div class="row">
+      <div  class="logo col-md-4"> <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a> </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"> <?php echo $this->getChildHtml('top_cart') ?> </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-main" role="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="navbar-header"> <a class="navbar-brand visible-xs" href="#"> <?php echo $this->__('Categories') ?> </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <span class="sr-only"><?php echo $this->__('Toggle Navigation') ?></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-main-collapse"> <?php echo $this->getChildHtml('topMenu') ?> <?php echo $this->getChildHtml('topSearch') ?> </div>
+    </div>
+  </div>
+</nav>

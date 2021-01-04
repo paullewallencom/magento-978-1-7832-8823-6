@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?> <?php echo $this->getChildHtml('global_notices') ?>
+<header> <?php echo $this->getChildHtml('header') ?> </header>
+<section id="after-header">
+  <div class="container"> <?php echo $this->getChildHtml('slider') ?> </div>
+</section>
+<section id="maincontent">
+  <div class="container">
+    <div class="row"> <?php echo $this->getChildHtml('breadcrumbs') ?>
+      <aside class="col-left sidebar col-md-3"> <?php echo $this->getChildHtml('left') ?> </aside>
+      <div class="col-main col-md-9"> <?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?> </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container"> <?php echo $this->getChildHtml('footer') ?> </div>
+</footer>
+<?php echo $this->getChildHtml('before_body_end') ?> <?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

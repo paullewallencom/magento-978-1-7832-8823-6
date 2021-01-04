@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * local.xml
+ * Local layout modifications for our local theme
+ * @category    design
+ * @package     bookstore
+ * @copyright   Copyright (c) 2013 Andrea Sacca'
+ * @author_url  http://www.andreasacca.it
+ */
+-->
+<layout version="0.1.0">
+  <default translate="label" module="page">
+  
+  	<reference name="root">
+		
+		<!-- define the default template for the theme -->
+		<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		
+		<!-- define the block slider -->
+		<block type="core/text_list" name="slider" as="slider" translate="label">
+				<label>Slider Block</label>
+		</block>
+			
+	</reference>
+	
+    <reference name="head">
+      <!-- Adding Javascripts -->
+      <action method="addItem">
+        <type>skin_js</type>
+        <name>js/jquery.min.js</name>
+      </action>
+      <action method="addItem">
+        <type>skin_js</type>
+        <name>js/bootstrap.min.js</name>
+      </action>
+      <action method="addItem">
+        <type>skin_js</type>
+        <name>js/jquery.scripts.js</name>
+      </action>
+      <action method="addItem">
+        <type>skin_js</type>
+        <name>js/html5shiv.js</name>
+        <params/>
+        <if>lt IE 9</if>
+      </action>
+      <action method="addItem">
+        <type>skin_js</type>
+        <name>js/respond.min.js</name>
+        <params/>
+        <if>lt IE 9</if>
+      </action>
+      
+      <!-- Removing the styles.css -->
+      <action method="removeItem">
+        <type>skin_css</type>
+        <name>css/styles.css</name>
+      </action>
+      <!-- Adding Bootstrap Css -->
+      <action method="addCss">
+        <stylesheet>css/bootstrap.min.css</stylesheet>
+      </action>
+      <!-- Adding the styles.css -->
+      <action method="addItem">
+        <type>skin_css</type>
+        <stylesheet>css/styles.css</stylesheet>
+      </action>
+    </reference>
+	<!-- // Default -->
+	
+	<!-- Header -->
+    <reference name="header">
+      <block type="cms/block" name="topbar_cmslinks" as="topbar_cmslinks">
+        <action method="setBlockId">
+          <block_id>topbar_cmslinks</block_id>
+        </action>
+      </block>
+      <block type="checkout/cart_sidebar" name="top_cart" template="checkout/cart/topcart.phtml" before="-">
+        <action method="addItemRender">
+          <type>simple</type>
+          <block>checkout/cart_item_renderer</block>
+          <template>checkout/cart/sidebar/default.phtml</template>
+        </action>
+        <action method="addItemRender">
+          <type>grouped</type>
+          <block>checkout/cart_item_renderer_grouped</block>
+          <template>checkout/cart/sidebar/default.phtml</template>
+        </action>
+        <action method="addItemRender">
+          <type>configurable</type>
+          <block>checkout/cart_item_renderer_configurable</block>
+          <template>checkout/cart/sidebar/default.phtml</template>
+        </action>
+        <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+          <label>Shopping Cart Sidebar Extra Actions</label>
+        </block>
+      </block>
+    </reference>
+	<!-- // Header -->
+	
+	<!-- Footer -->
+    <reference name="footer">
+	
+      <block type="cms/block" name="footer-company" as="footer-company">
+        <action method="setBlockId">
+          <block_id>footer-company</block_id>
+        </action>
+      </block>
+      <block type="cms/block" name="footer-cmslinks" as="footer-cmslinks">
+        <action method="setBlockId">
+          <block_id>footer-cmslinks</block_id>
+        </action>
+      </block>
+      <block type="cms/block" name="footer-social" as="footer-social">
+        <action method="setBlockId">
+          <block_id>footer-social</block_id>
+        </action>
+      </block>
+      <block type="cms/block" name="footer-cards" as="footer-cards">
+        <action method="setBlockId">
+          <block_id>footer-cards</block_id>
+        </action>
+      </block>
+	  
+	  <!-- add the newsletter block in the footer -->
+	  <block type="newsletter/subscribe" name="footer.newsletter" as="footer_newsletter" template="newsletter/subscribe.phtml"/>
+	  
+    </reference>
+	<!-- // Footer -->
+	
+	<!-- Left Sidebar -->
+	<reference name="left">
+		<!-- remove the default newsletter block from the sidebar -->
+		<remove name="left.newsletter"/>
+		
+		<remove name="left.permanent.callout"/>
+		<remove name="tags_popular"/>
+		
+		<block type="catalog/navigation" before="-" name="leftNav" as="leftNav" template="catalog/navigation/leftnav.phtml"/>
+		
+		
+	</reference>
+	<!-- // Left Sidebar -->
+
+	
+  </default>
+</layout>

@@ -1,0 +1,8 @@
+<?php $_menu = $this->getHtml('level-top') ?>
+<?php if ($_menu): ?>
+
+<ul class="nav navbar-nav">
+  <li><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">Home</a></li>
+  <?php echo $_menu ?>
+</ul>
+<?php endif ?>

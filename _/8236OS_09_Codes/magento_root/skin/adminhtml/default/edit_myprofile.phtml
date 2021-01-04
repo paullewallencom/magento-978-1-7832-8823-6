@@ -1,0 +1,217 @@
+<?php 
+	$isPartner= Mage::getModel('marketplace/userprofile')->isPartner();
+	$helper = Mage::helper('marketplace');
+	if($isPartner==1){?>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined'){
+    document.write(unescape("%3Cscript src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() { 
+        new nicEditor({fullPanel : true}).panelInstance('compdesi');
+  });
+</script>
+<script src="<?php echo $this->getSkinUrl('marketplace/colorpicker/js/colorpicker.js'); ?>"></script>
+<?php 	$paymentDetail=Mage::getModel('marketplace/saleslist')->getPaymentDetailById(); ?>
+<div class="page-title">
+	<h1><?php echo $helper->__('Edit Profile Information') ?></h1>
+</div>
+<form action="<?php echo $this->getUrl('marketplace/marketplaceaccount/editProfile') ?>" enctype="multipart/form-data" method="post" id="form-profile-validate">
+	<div class="fieldset">
+	<h4 class="legend"><?php echo $helper->__('Profile Information') ?></h4>
+		<ul class="form-list">
+			<li class="fields">
+			<?php $partner=Mage::getModel('marketplace/userprofile')->getPartnerProfileById(Mage::getSingleton('customer/session')->getCustomerId());
+				if($partner['wantpartner']==1){?> 
+					<div class="profile">
+						<label for="twitterid"><?php echo $helper->__('Twitter ID') ?> </label>
+						<div class="input-box">
+							 <input type="text" id="twitterid" name="twitterid" value="<?php echo $partner['twitterid']; ?>" title="twitterid" class="input-text" />
+						</div>
+					</div>
+					<div class="profile">
+						<label for="facebookid"><?php echo $helper->__('Facebook ID') ?> </label>
+						<div class="input-box">
+							 <input type="text" id="facebookid" name="facebookid" value="<?php echo $partner['facebookid']; ?>" title="facebookid" class="input-text" />
+						</div>
+					</div>
+					<div class="profile">
+						<label for="backgroundth"><?php echo $helper->__('Theme : Background Color') ?> </label>
+						<div class="input-box">
+							 <input type="text" id="backgroundth" name="backgroundth" value="<?php echo $partner['backgroundth']; ?>" title="backgroundth" class="input-text" />
+							 <span class="color_pick" style="background-color:<?php echo $partner['backgroundth']; ?>"></span>
+						</div>
+					</div>
+					<div class="profile">
+						<label for="shoptitle"><?php echo $helper->__('Shop Title') ?></label>
+						<div class="input-box">
+							 <input type="text" id="shoptitle" name="shoptitle" value="<?php echo $partner['shoptitle']; ?>" title="shoptitle" class="input-text" />
+						</div>
+					</div>
+					<div class="profile">
+						<label for="bannerpic"> <?php echo $helper->__('Company Banner') ?> </label>
+						<div class="input-box">
+							 <input type="file" id="bannerpic" name="bannerpic"  title="bannerpic" class="input-text banner" size="26" />
+							 <img class="wk_banner" alt=" <?php echo $helper->__('no image') ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'avatar/'.$partner['bannerpic']; ?>"/>
+							 <label class="input-box-notification input-box-notification1"><?php echo $helper->__("Upload 700px X 100px for better look"); ?></label>
+						</div>
+					</div>
+					
+					<div class="profile">
+						<label for="logopic"> <?php echo $helper->__('Company Logo') ?> </label>
+						<div class="input-box">
+							 <input type="file" id="logopic" alt="no image" name="logopic"  title="logopic" class="input-text banner" size="26"/>
+							 <img class="prev_img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'avatar/'.$partner['logopic']; ?>"/>
+						</div>
+					</div>
+					<div class="profile">
+						<label for="complocality"><?php echo $helper->__('Company Locality') ?></label>
+						<div class="input-box">
+							 <input type="text" id="complocality" name="complocality" value="<?php echo $partner['complocality']; ?>" title="complocality" class="input-text" />
+						</div>
+					</div>
+					<div class="profile">
+						<label for="compdesi"><?php echo $helper->__('Company Description') ?></label>
+						<div class="input-box">
+							 <textarea type="text" id="compdesi" name="compdesi" title="compdesi" class="input-text compdesi" ><?php echo $partner['compdesi']; ?> </textarea>
+						</div>
+					</div>
+					<div class="profile">
+						<label for="countrypic"> <?php echo $helper->__('Country') ?> </label>
+						<div class="input-box">
+							 <select name="countrypic" id="countrypic">
+								<option value="" selected="selected" disabled="disabled"><?php echo $helper->__('Select Country')?></option>
+							<?php foreach(Mage::getModel('directory/country')->getCollection() as $country){?>
+								<option <?php echo ($partner['countrypic']==$country->getId()?"selected='selected'":""); ?>value="<?php echo $country->getId(); ?>"><?php echo $country->getName();?></option>
+							<?php } ?>
+							</select>
+							<img class="country_img_prev" alt="no image" src="<?php echo $this->getSkinUrl('marketplace/images/country/countryflags/').strtolower($partner['countrypic']==""?"xx":$partner['countrypic']).".gif"; ?>"/>
+						</div>
+					</div>
+					<div class="profile">	
+						<label for="meta_keywords"><?php echo $helper->__('Meta Keywords') ?></label>
+						<div class="input-box">			
+							<textarea type="text" id="meta_keywords" name="meta_keyword" title="Meta Keyword" class="input-text compdesi" ><?php echo $partner['meta_keyword']; ?> </textarea>	
+							<label class="input-box-notification"><?php echo $helper->__("Enter Meta Keywords Comma(',') Separated.."); ?> </label>	
+						</div>	
+					</div>	
+					<div class="profile">	
+						<label for="meta_description"><?php echo $helper->__('Meta Description') ?></label>	
+						<div class="input-box">	
+							<textarea type="text" id="meta_description" name="meta_description" title="Meta Description" class="input-text compdesi" ><?php echo $partner['meta_description']; ?> </textarea>	
+						</div>	
+					</div>	
+					<div class="profile">
+						<label for="compdesihtml" class="button_label"><?php echo $helper->__('Company Profile View') ?></label>
+						<div>
+							<a class="btn_primary" id="cprofile" href="<?php echo $this->getUrl('marketplace/seller/profile').$partner['profileurl']; ?>" target="_blank"><?php echo $helper->__('Click for profile view') ?></a>
+						</div>
+					</div>
+					<div class="profile">
+						<label for="compdesihtml" class="button_label"><?php echo $helper->__('Company Collection View') ?></label>
+						<div>
+							<a class="btn_primary" id="ccollection" href="<?php echo $this->getUrl('marketplace/seller/collection').$partner['profileurl']; ?>" target="_blank"><?php echo $helper->__('Click for collection view') ?></a>
+						</div>
+					</div>
+				<?php } ?>
+			</li>
+		</ul>
+	</div>
+	<div class="buttons-set">
+		<button type="submit" title="Save" class="button">
+			<span>
+				<span><?php echo $helper->__('Save Profile') ?></span>
+			</span>
+		</button>
+	</div>
+</form>
+
+<form action="<?php echo $this->getUrl('marketplace/marketplaceaccount/payment') ?>" enctype="multipart/form-data" method="post" id="form-payment-validate">
+	<div class="fieldset">
+		<h4 class="legend"><?php echo $helper->__('Payment Detail') ?></h4>
+		<ul class="form-list">
+			<li class="fields">
+				<div class="field">
+					<label><?php echo $helper->__('Payment Details') ?></label>
+					<div class="input-box">
+						<textarea name="paymentsource" id="paymentsource" title="payment source" cols="1" rows="3" ><?php echo $paymentDetail; ?></textarea>
+						<input type="hidden" name="userid" id="userid" value="<?php echo Mage::getSingleton('customer/session')->getCustomer()->getId(); ?>" title="userid" class="input-text"  />
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="buttons-set">
+		<button type="submit" title="Save" class="button">
+			<span>
+				<span><?php echo $helper->__('Save Payment') ?></span>
+			</span>
+		</button>
+		<p class="back-link">
+			<a href="javascript:;" onclick="javascript: window.history.back();" class="left">&laquo; <?php echo $helper->__('Back') ?></a>
+		</p>
+	</div>
+</form>
+<script>
+
+$wk_jq=jQuery.noConflict();
+(function($wk_jq){
+	$wk_jq(function(){
+		var dataForm = new VarienForm('form-profile-validate', true);
+		$wk_jq('.color_pick').ColorPicker({
+			color: '<?php echo $partner['backgroundth']; ?>',
+			onShow: function (colpkr) {
+				$wk_jq(colpkr).fadeIn(500);
+				return false;
+			},
+			onHide: function (colpkr) {
+				$wk_jq(colpkr).fadeOut(500);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				$wk_jq('#backgroundth').val('#' + hex);
+				$wk_jq('.color_pick').css('background-color','#'+hex);
+			}
+		});	
+		$wk_jq('#countrypic').change(function(){
+			$wk_jq('#countrylist').val($wk_jq(this).val());
+			$wk_jq('.country_img_prev').attr('src','<?php echo $this->getSkinUrl('marketplace/images/country/countryflags/')?>'+$wk_jq(this).val().toLowerCase()+'.gif')
+			var address=$wk_jq(this).find('option[value="'+$wk_jq(this).val()+'"]').text();//address which you want Longitude and Latitude
+			$wk_jq.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "http://maps.googleapis.com/maps/api/geocode/json",
+				data: {'address': address,'sensor':false},
+				success: function(data){
+					if(data.results.length){
+						$wk_jq('#country-latitude').val(data.results[0].geometry.location.lat);
+						$wk_jq('#country-longitude').val(data.results[0].geometry.location.lng);
+					}else{
+						$wk_jq('#country-latitude').val('invalid address');
+						$wk_jq('#country-longitude').val('invalid address');
+				   }
+				}
+			});
+		});
+		$wk_jq('#logopic,#bannerpic').change(function(){
+			var imagename=$wk_jq(this).val();
+			var image=imagename.split("."); 
+			image=image[1];
+			if(image!='jpg'){
+				if(image!='jpeg'){
+					if(image!='png'){
+						if(image!='gif'){
+							alert('Invalid Image Extension. Allowed extension is jpg,jpef,png,gif');
+							$wk_jq(this).val('');
+						}
+					}
+				}
+			}
+		});
+		$wk_jq('.left').insertAfter('.buttons-set:last');
+	});
+})(jQuery);
+</script>
+<?php } ?>
+

@@ -1,0 +1,20 @@
+<?php $catalogSearchHelper =  $this->helper('catalogsearch'); ?>
+
+<form id="search_mini_form" class="navbar-form navbar-right" role="search" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+  <div class="form-group">
+    <div class="input-group"> <span class="input-group-addon">
+      <div class="glyphicon glyphicon-search pull-left"></div>
+      </span>
+      <input id="search" type="text"  name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="form-control" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" placeholder="<?php echo $this->__('Search...') ?>" />
+      <span class="input-group-btn">
+      <button type="submit" class="btn btn-default">Submit</button>
+      </span> </div>
+  </div>
+  <div id="search_autocomplete" class="search-autocomplete"></div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+var searchForm = new Varien.searchForm('search_mini_form', 'search', '<?php echo $this->__('Search...') ?>');
+searchForm.initAutocomplete('<?php echo $catalogSearchHelper->getSuggestUrl() ?>', 'search_autocomplete');
+//]]>
+</script> 

@@ -1,0 +1,21 @@
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+?>
+
+<p class="product-image img-thumbnail">
+  <?php
+        $_img = '<img id="product_main_img" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(500,600).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" class="img-responsive" />';
+        echo $_helper->productAttribute($_product, $_img, 'image');
+    ?>
+  <a id="zoom" href="#" class="visible-md visible-lg">Zoom Images</a> </p>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<div class="more-views">
+  <?php foreach ($this->getGalleryImages() as $_image): ?>
+  <a href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" class="img-thumbnail"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(56); ?>" rel="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(500,600); ?>" width="56" height="56" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" /></a>
+  
+  <a style="display:none" href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>" rel="prettyPhoto[productGallery]"></a>
+  
+  <?php endforeach; ?>
+</div>
+<?php endif; ?>

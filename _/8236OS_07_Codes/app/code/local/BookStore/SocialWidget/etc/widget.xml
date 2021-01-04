@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<widgets>
+
+  <socialwidget_icons type="socialwidget/icons">
+        <name>Social Sharing Type: Icons</name>
+        <description type="desc">Adds social sharing with Icons</description>
+    </socialwidget_icons>
+  
+    <socialwidget_share type="socialwidget/share" translate="name description" module="socialwidget">
+    <name>Social Sharing Widget (with options)</name>
+    <description type="desc">Adds social sharing services</description>
+    <parameters>
+    
+    	<block_title translate="Block Title">
+		 	<required>1</required>
+		 	<visible>1</visible>
+		 	<label>Block Title</label>
+		 	<type>text</type>
+		 </block_title>
+		 
+		 <show_count>
+			 <visible>1</visible>
+			 <label>Show Share Count Bubble</label>
+			 <type>checkbox</type>
+			 <value>true</value>
+		 </show_count>
+		 
+        </parameters>
+    </socialwidget_share>
+    
+</widgets>
